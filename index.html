@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Links</title>
+</head>
+<body>
+  <button id="getLinkButton">Get a Link</button>
+  <a id="dynamicLink" href="#" target="_blank" style="display:none;">Open Link</a>
+
+  <script>
+    document.getElementById('getLinkButton').addEventListener('click', async () => {
+      try {
+        const response = await fetch('/api/getLink');
+        if (response.ok) {
+          const data = await response.json();
+          const linkElement = document.getElementById('dynamicLink');
+          linkElement.href = data.link;
+          linkElement.style.display = 'block';
+          linkElement.innerText = `Go to ${data.link}`;
+        } else {
+          alert('No more links available');
+        }
+      } catch (error) {
+        console.error('Error fetching the link:', error);
+      }
+    });
+  </script>
+</body>
+</html>
