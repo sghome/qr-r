@@ -1,0 +1,9 @@
+{
+  "name": "dynamic-links",
+  "version": "1.0.0",
+  "main": "api/getLink.js",
+  "scripts": {
+    "start": "vercel dev"
+  },
+  "dependencies": {}
+}
